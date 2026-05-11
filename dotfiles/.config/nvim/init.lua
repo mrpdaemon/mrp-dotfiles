@@ -37,7 +37,12 @@ vim.opt.tabstop = 3                   -- indent every 3 columns
 vim.opt.softtabstop = 3               -- let backspace delete indents
 vim.opt.smarttab = true               -- Let TAB/BSpace insert/delete spaces
 vim.opt.list = true                   -- show tab / trail chars
-vim.opt.listchars = "tab:>·,trail:~,extends:>,nbsp:."
+vim.opt.listchars = {
+  tab = '   ',
+  trail = '·',
+  extends = '»',
+  nbsp = '␣',
+}
 
 -- Setup lazy.nvim
 require("lazy").setup({
