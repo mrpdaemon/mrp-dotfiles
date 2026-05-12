@@ -197,6 +197,30 @@ require("lazy").setup({
     {
        "neovim/nvim-lspconfig",
     },
+    {
+       "nvim-treesitter/nvim-treesitter",
+       branch = 'master',
+       lazy = false,
+       build = ":TSUpdate",
+       config = function()
+          local configs = require("nvim-treesitter.configs")
+          configs.setup({
+              ensure_installed = { "bash", "c", "cpp", "dockerfile",
+                  "git_config", "git_rebase", "gitcommit", "gitignore", "go",
+                  "javascript", "json", "jsonnet", "latex", "lua", "make",
+                  "markdown", "proto", "rust", "starlark", "tmux", "typescript",
+                  "vim", "vimdoc"},
+              auto_install = true,
+              indent = {
+                enable = true,
+              },
+              highlight = {
+                enable = true,
+                additional_vim_regex_highlighting = false,
+              },
+          })
+       end
+    },
   },
   -- automatically check for plugin updates
   checker = { enabled = true },
