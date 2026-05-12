@@ -193,7 +193,10 @@ require("lazy").setup({
     {
       "nvim-telescope/telescope-file-browser.nvim",
       lazy = true,
-    }
+    },
+    {
+       "neovim/nvim-lspconfig",
+    },
   },
   -- automatically check for plugin updates
   checker = { enabled = true },
@@ -212,6 +215,9 @@ vim.api.nvim_create_autocmd("FileType", {
                                 { noremap = true, silent = true })
     -- Enable auto-formatting on save
     vim.cmd("ClangFormatAutoEnable")
+
+    -- Enable LSP via clangd
+    vim.lsp.enable('clangd')
   end,
 })
 
