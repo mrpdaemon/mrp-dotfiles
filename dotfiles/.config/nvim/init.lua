@@ -55,6 +55,11 @@ require("lazy").setup({
         vim.cmd([[colorscheme xoria256]])
       end,
     },
+    {
+      "nvim-tree/nvim-web-devicons",
+      opts = {
+      }
+    },
     { "myusuf3/numbers.vim",
       config = function()
       end,
@@ -82,19 +87,6 @@ require("lazy").setup({
         vim.g.bufferline_echo = 0         -- Don't echo buffer name to command bar
         vim.g.bufferline_rotate = 1       -- Rotate buffers
         vim.g.bufferline_fixed_index = -1 -- Fix current buffer to last position
-      end,
-    },
-    { "scrooloose/nerdtree",
-       keys = {
-         { "<leader>nt", "<cmd>NERDTreeToggle<cr>", desc = "NERDTree" },
-         { "<leader>nf", "<cmd>NERDTreeFind<cr>", desc = "NERDTree Find" },
-       },
-      init = function()
-        vim.g.NERDTreeQuitOnOpen = 1       -- quit when opening stuff
-        vim.g.NERDTreeKeepTreeInNewTab = 1 -- keep tree in a new tab
-        vim.g.NERDTreeShowHidden = 1       -- show hidden files
-        vim.g.NERDTreeIgnore = { '\\~$', '\\.swp$', '\\.git' }
-        vim.g.NERDTreeWinSize = 60 -- Larger window size
       end,
     },
     { "tpope/vim-fugitive",
@@ -133,25 +125,6 @@ require("lazy").setup({
       config = function()
       end,
     },
-    { "ctrlpvim/ctrlp.vim",
-       keys = {
-         { "<leader>p", "<cmd>CtrlPBuffer<cr>", desc = "CtrlP" },
-         { "<leader>o", "<cmd>CtrlP<cr>", desc = "CtrlP" },
-       },
-      init = function()
-        vim.g.ctrlp_max_files = 0          -- no limit on max files
-        vim.g.ctrlp_max_depth = 40         -- large projects hit the depth limit
-        vim.g.ctrlp_lazy_update = 1        -- slow to search on every key press
-        vim.g.ctrlp_by_filename = 1        -- only search file names
-      end,
-    },
-    { "junegunn/fzf",
-       keys = {
-         { "<leader>f", "<cmd>FZF<cr>", desc = "FZF" },
-       },
-      config = function()
-      end,
-    },
     { "rking/ag.vim",
        keys = {
          { "<leader>a", "<cmd>Ag<cr>", desc = "Silver searcher" },
@@ -181,6 +154,46 @@ require("lazy").setup({
         vim.g.jsonnet_format_on_save = 0
       end,
     },
+    {
+      "nvim-telescope/telescope.nvim",
+      version = "*",
+      keys = {
+         { "<leader>tf", "<cmd>Telescope find_files<cr>", desc = "Telescope find files" },
+         { "<leader>tp", "<cmd>Telescope buffers<cr>", desc = "Telescope buffers" },
+         { "<leader>tg", "<cmd>Telescope live_grep<cr>", desc = "Telescope live grep" },
+         { "<leader>tb", "<cmd>Telescope file_browser<cr>", function() require("telescope").load_extension "file_browser" end, desc = "Telescope file browser" },
+      },
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        {
+           "nvim-telescope/telescope-fzf-native.nvim",
+           build = "make"
+        },
+        "nvim-telescope/telescope-file-browser.nvim",
+      },
+      config = function()
+        local telescope = require("telescope")
+        telescope.setup({
+            pickers = {
+                live_grep = {
+                    file_ignore_patterns = { 'node_modules', '.git', '.venv' },
+                    additional_args = function(_)
+                        return { "--hidden" }
+                    end
+                },
+                find_files = {
+                    file_ignore_patterns = { 'node_modules', '.git', '.venv' },
+                    hidden = true
+                }
+
+            },
+        })
+    end,
+    },
+    {
+      "nvim-telescope/telescope-file-browser.nvim",
+      lazy = true,
+    }
   },
   -- automatically check for plugin updates
   checker = { enabled = true },
