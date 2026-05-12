@@ -158,10 +158,10 @@ require("lazy").setup({
       "nvim-telescope/telescope.nvim",
       version = "*",
       keys = {
-         { "<leader>tf", "<cmd>Telescope find_files<cr>", desc = "Telescope find files" },
-         { "<leader>tp", "<cmd>Telescope buffers<cr>", desc = "Telescope buffers" },
-         { "<leader>tg", "<cmd>Telescope live_grep<cr>", desc = "Telescope live grep" },
-         { "<leader>tb", "<cmd>Telescope file_browser<cr>", function() require("telescope").load_extension "file_browser" end, desc = "Telescope file browser" },
+         { "<leader>f", "<cmd>Telescope find_files<cr>", desc = "Telescope find files" },
+         { "<leader>p", "<cmd>Telescope buffers<cr>", desc = "Telescope buffers" },
+         { "<leader>g", "<cmd>Telescope live_grep<cr>", desc = "Telescope live grep" },
+         { "<leader>b", "<cmd>Telescope file_browser<cr>", function() require("telescope").load_extension "file_browser" end, desc = "Telescope file browser" },
       },
       dependencies = {
         "nvim-lua/plenary.nvim",
