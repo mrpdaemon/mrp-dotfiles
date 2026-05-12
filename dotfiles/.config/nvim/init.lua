@@ -246,6 +246,10 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Diagnostics
+vim.diagnostic.config({ virtual_text = true })
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = "Show diagnostics in float" })
+
 -- Colorscheme tweaks
 vim.cmd([[highlight String ctermfg=229 guifg=#ffffaf]])
 vim.cmd([[highlight ColorColumn cterm=NONE gui=NONE ctermbg=236 guibg=#303030]])
