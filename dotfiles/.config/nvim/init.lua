@@ -159,7 +159,7 @@ require("lazy").setup({
       version = "*",
       keys = {
          { "<leader>f", "<cmd>Telescope find_files<cr>", desc = "Telescope find files" },
-         { "<leader>p", "<cmd>Telescope buffers<cr>", desc = "Telescope buffers" },
+         { "<leader>p", "<cmd>Telescope buffers sort_mru=true ignore_current_buffer=true<cr>", desc = "Telescope buffers" },
          { "<leader>g", "<cmd>Telescope live_grep<cr>", desc = "Telescope live grep" },
          { "<leader>b", "<cmd>Telescope file_browser<cr>", function() require("telescope").load_extension "file_browser" end, desc = "Telescope file browser" },
          { "<leader>bf", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>", function() require("telescope").load_extension "file_browser" end, desc = "Telescope file browser" },
