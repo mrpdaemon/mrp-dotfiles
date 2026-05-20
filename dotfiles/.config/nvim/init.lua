@@ -209,8 +209,8 @@ require("lazy").setup({
               ensure_installed = { "bash", "c", "cpp", "dockerfile",
                   "git_config", "git_rebase", "gitcommit", "gitignore", "go",
                   "javascript", "json", "jsonnet", "latex", "lua", "make",
-                  "markdown", "proto", "rust", "starlark", "tmux", "typescript",
-                  "vim", "vimdoc"},
+                  "markdown", "markdown_inline", "proto", "rust", "starlark",
+                  "tmux", "typescript", "vim", "vimdoc"},
               auto_install = true,
               indent = {
                 enable = true,
@@ -251,6 +251,20 @@ require("lazy").setup({
   (#set! injection.language "markdown_inline"))
 ]])
        end
+    },
+    {
+       "MeanderingProgrammer/render-markdown.nvim",
+       ft = { "markdown" },
+       dependencies = {
+         "nvim-treesitter/nvim-treesitter",
+         "nvim-tree/nvim-web-devicons",
+       },
+       keys = {
+         { "<leader>rm", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle render-markdown" },
+       },
+       opts = {
+         enabled = false,
+       },
     },
   },
   -- automatically check for plugin updates
