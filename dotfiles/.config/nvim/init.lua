@@ -258,6 +258,7 @@ require("lazy").setup({
 })
 
 vim.keymap.set('n', '<leader>l', '<cmd>Lazy<CR>', { silent = true })
+vim.keymap.set('n', '<leader>tw', '<cmd>set tw=80<CR>', { silent = true, desc = "Set textwidth=80" })
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "c", "cpp" },
