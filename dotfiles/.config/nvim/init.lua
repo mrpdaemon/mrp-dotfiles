@@ -301,6 +301,7 @@ vim.cmd([[highlight Boolean cterm=bold gui=bold]])
 vim.cmd([[highlight Identifier cterm=bold gui=bold]])
 vim.cmd([[highlight Macro cterm=bold gui=bold]])
 vim.cmd([[highlight PreProc cterm=bold gui=bold]])
+vim.cmd([[highlight LineNr ctermfg=238 guifg=#444444]])
 
 -- Easy window movements with CTRL+hjkl
 vim.keymap.set('n', '<C-J>', '<C-W>j', { silent = true })
