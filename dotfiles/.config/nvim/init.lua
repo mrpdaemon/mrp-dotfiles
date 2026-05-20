@@ -433,5 +433,46 @@ vim.keymap.set('n', '<leader>gd', gd_populate_qf,
 -- Reopen the quickfix window (handy after <leader>gd auto-closes it to make
 -- room for the side-by-side diff). botright keeps it full-width under any
 -- side-by-side diff rather than splitting only under the focused column.
-vim.keymap.set('n', '<leader>q', '<cmd>botright copen<CR>',
+-- If the current buffer corresponds to a file in the quickfix list, move
+-- the cursor in the quickfix window to that entry.
+local function gd_reopen_qf()
+  -- Build a set of candidate absolute paths from non-quickfix windows in the
+  -- current tabpage. We check all windows (not just the focused one) because
+  -- <leader>gd's Gvdiffsplit puts a fugitive scratch buffer (fugitive://...)
+  -- in the left window and the working-copy file in the right window; we
+  -- want to match against the working-copy file regardless of which side is
+  -- focused when <leader>q is pressed.
+  local candidates = {}
+  for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    local bt = vim.api.nvim_buf_get_option(buf, 'buftype')
+    if bt == "" then -- skip quickfix, terminal, fugitive (acwrite), etc.
+      local name = vim.api.nvim_buf_get_name(buf)
+      if name ~= "" then
+        candidates[vim.fn.fnamemodify(name, ":p")] = true
+      end
+    end
+  end
+
+  vim.cmd("botright copen")
+
+  if next(candidates) == nil then return end
+  local items = vim.fn.getqflist()
+  for idx, item in ipairs(items) do
+    local item_path
+    if item.bufnr and item.bufnr ~= 0 then
+      local name = vim.fn.bufname(item.bufnr)
+      if name ~= "" then
+        item_path = vim.fn.fnamemodify(name, ":p")
+      end
+    end
+    if item_path and candidates[item_path] then
+      -- We're now in the quickfix window; position the cursor on the match.
+      vim.api.nvim_win_set_cursor(0, { idx, 0 })
+      return
+    end
+  end
+end
+
+vim.keymap.set('n', '<leader>q', gd_reopen_qf,
   { silent = true, desc = "Reopen quickfix window" })
