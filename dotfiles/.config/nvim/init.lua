@@ -114,6 +114,15 @@ require("lazy").setup({
               vim.cmd("GitGutterAll")
            end,
            desc = "Set git diff base" },
+         { "<leader>gm",
+           function()
+              local base = vim.env.MRP_MAIN_BRANCH_NAME
+              if base == nil or base == "" then base = "master" end
+              vim.g.mrp_diff_base = base
+              vim.g.gitgutter_diff_base = base
+              vim.cmd("GitGutterAll")
+           end,
+           desc = "Set diff base to main branch" },
          { "<leader>gc",
            function()
               vim.g.mrp_diff_base = "HEAD"
