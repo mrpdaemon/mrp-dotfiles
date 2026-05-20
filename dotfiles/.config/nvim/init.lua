@@ -184,6 +184,11 @@ require("lazy").setup({
       config = function()
         local telescope = require("telescope")
         telescope.setup({
+            defaults = {
+                layout_config = {
+                    horizontal = { preview_cutoff = 130 },
+                },
+            },
             pickers = {
                 live_grep = {
                     file_ignore_patterns = { 'node_modules', '.git', '.venv' },
@@ -196,6 +201,13 @@ require("lazy").setup({
                     hidden = true
                 }
 
+            },
+            extensions = {
+                file_browser = {
+                    layout_config = {
+                        horizontal = { preview_cutoff = 130 },
+                    },
+                },
             },
         })
     end,
