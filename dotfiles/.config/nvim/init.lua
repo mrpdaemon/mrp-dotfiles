@@ -366,15 +366,16 @@ local function gd_open_under_cursor()
     or vim.fn.bufname(item.bufnr)
   if not filename or filename == "" then return end
 
-  local qf_winid = vim.api.nvim_get_current_win()
+  -- Close the quickfix window before opening the side-by-side diff so it
+  -- doesn't eat horizontal space. <leader>q reopens it.
+  vim.cmd("cclose")
+
   local main_winid
   for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
-    if win ~= qf_winid then
-      local bt = vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), 'buftype')
-      if bt ~= 'quickfix' then
-        main_winid = win
-        break
-      end
+    local bt = vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), 'buftype')
+    if bt ~= 'quickfix' then
+      main_winid = win
+      break
     end
   end
   if not main_winid then
@@ -383,7 +384,7 @@ local function gd_open_under_cursor()
   end
 
   for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
-    if win ~= qf_winid and win ~= main_winid then
+    if win ~= main_winid then
       pcall(vim.api.nvim_win_close, win, true)
     end
   end
@@ -418,7 +419,9 @@ local function gd_populate_qf()
   end
   gd_diff_base = base
   vim.fn.setqflist({}, ' ', { title = gd_qf_title_prefix .. base, items = items })
-  vim.cmd("copen")
+  -- botright ensures the qf window spans the full screen width (under both
+  -- sides of any side-by-side diff), not just the current column.
+  vim.cmd("botright copen")
   vim.api.nvim_buf_set_keymap(0, 'n', '<CR>', '', {
     noremap = true, silent = true, callback = gd_open_under_cursor,
   })
@@ -426,3 +429,9 @@ end
 
 vim.keymap.set('n', '<leader>gd', gd_populate_qf,
   { silent = true, desc = "Git diff vs base -> quickfix" })
+
+-- Reopen the quickfix window (handy after <leader>gd auto-closes it to make
+-- room for the side-by-side diff). botright keeps it full-width under any
+-- side-by-side diff rather than splitting only under the focused column.
+vim.keymap.set('n', '<leader>q', '<cmd>botright copen<CR>',
+  { silent = true, desc = "Reopen quickfix window" })
