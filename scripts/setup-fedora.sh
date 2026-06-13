@@ -13,7 +13,7 @@ install_packages() {
   sudo dnf copr enable -y scottames/ghostty
 
   echo "==> Installing packages"
-  sudo dnf install -y neovim tmux ghostty
+  sudo dnf install -y neovim tmux ghostty tree-sitter-cli
 }
 
 # link <target> <link>: point <link> at <target>, creating parent dirs.
