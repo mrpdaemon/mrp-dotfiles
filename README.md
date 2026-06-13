@@ -23,3 +23,19 @@ My personal dotfiles.
   10k-line scrollback, vim-style pane navigation, an SSH-agent-forwarding
   workaround via `~/.ssh/ssh_auth_sock`, and a `prefix + u` binding to spawn
   a two-pane dev window via `~/bin/tmux-new-dev-window`.
+- `dotfiles/.config/ghostty/config.ghostty` — Ghostty terminal configuration.
+  Adwaita Dark theme with a custom background, SF Mono at 10pt.
+- `scripts/setup-fedora.sh` — Fedora bootstrap script. Installs `neovim`,
+  `tmux`, and `ghostty` via `dnf` (enabling the `scottames/ghostty` COPR
+  first), creates the symlinks below, and appends the editor/`vi` alias lines
+  to `~/.bashrc` if missing.
+
+## Setup
+
+On Fedora, run `scripts/setup-fedora.sh`. It installs the packages, links the
+dotfiles into place, and configures `~/.bashrc`. The symlinks it creates are:
+
+- `~/.config/nvim` → `dotfiles/.config/nvim`
+- `~/.config/ghostty/config.ghostty` → `dotfiles/.config/ghostty/config.ghostty`
+- `~/.tmux.conf` → `dotfiles/.tmux.conf`
+- `~/.vimrc` → `dotfiles/.vimrc`
