@@ -229,7 +229,7 @@ require("lazy").setup({
           configs.setup({
               ensure_installed = { "bash", "c", "cpp", "dockerfile",
                   "git_config", "git_rebase", "gitcommit", "gitignore", "go",
-                  "javascript", "json", "jsonnet", "latex", "lua", "make",
+                  "javascript", "json", "jsonnet", "lua", "make",
                   "markdown", "markdown_inline", "proto", "rust", "starlark",
                   "tmux", "typescript", "vim", "vimdoc"},
               auto_install = true,

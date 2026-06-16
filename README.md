@@ -26,9 +26,9 @@ My personal dotfiles.
 - `dotfiles/.config/ghostty/config.ghostty` — Ghostty terminal configuration.
   Adwaita Dark theme with a custom background, SF Mono at 10pt.
 - `scripts/setup-fedora.sh` — Fedora bootstrap script. Installs `neovim`,
-  `tmux`, `ghostty`, and `tree-sitter-cli` via `dnf` (enabling the
-  `scottames/ghostty` COPR first), creates the symlinks below, and appends the
-  editor/`vi` alias lines to `~/.bashrc` if missing.
+  `tmux`, and `ghostty` via `dnf` (enabling the `scottames/ghostty` COPR
+  first), creates the symlinks below, and appends the editor/`vi` alias lines
+  to `~/.bashrc` if missing.
 
 ## Setup
 
