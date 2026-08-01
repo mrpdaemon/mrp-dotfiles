@@ -235,6 +235,10 @@ require("lazy").setup({
               auto_install = true,
               indent = {
                 enable = true,
+                -- Treesitter indent misindents while typing incomplete
+                -- C/C++ (unclosed braces break the parse); cindent
+                -- handles these languages better.
+                disable = { "c", "cpp" },
               },
               highlight = {
                 enable = true,
