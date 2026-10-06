@@ -16,7 +16,9 @@ My personal dotfiles.
   (NERDTree, fugitive, gitgutter, tagbar, CtrlP, fzf, ag,
   airline/bufferline, clang-format, jsonnet), plus `blink.cmp` for
   autocompletion (LSP, path, snippet, and buffer sources with the
-  Tab-to-accept `super-tab` keymap preset). Symlink the whole directory
+  Tab-to-accept `super-tab` keymap preset) and `numbers.vim` for relative
+  line numbers (`<leader>n` toggles it off/on to show absolute numbers).
+  Symlink the whole directory
   to `~/.config/nvim` so the `lua/mrp/*` local modules (e.g.
   `lua/mrp/gitdiff.lua`, a fugitive-based git diff workflow exposing
   `<leader>gd` and `<leader>q`) are on Neovim's `runtimepath`.
