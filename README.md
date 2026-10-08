@@ -24,7 +24,8 @@ My personal dotfiles.
   `<leader>gd` and `<leader>q`) are on Neovim's `runtimepath`.
 - `dotfiles/.tmux.conf` — tmux configuration. Uses `C-a` as the prefix,
   enables mouse and system-clipboard support, sets a 256-color terminal and
-  10k-line scrollback, vim-style pane navigation, an SSH-agent-forwarding
+  10k-line scrollback, vim-style pane navigation, splits (`%`, `"`) and new
+  windows (`c`) that open in the current pane's directory, an SSH-agent-forwarding
   workaround via `~/.ssh/ssh_auth_sock`, and a `prefix + u` binding to spawn
   a two-pane dev window via `~/bin/tmux-new-dev-window`.
 - `dotfiles/.config/ghostty/config.ghostty` — Ghostty terminal configuration.
