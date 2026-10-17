@@ -26,8 +26,10 @@ My personal dotfiles.
   enables mouse and system-clipboard support, sets a 256-color terminal and
   10k-line scrollback, vim-style pane navigation, splits (`%`, `"`) and new
   windows (`c`) that open in the current pane's directory, an SSH-agent-forwarding
-  workaround via `~/.ssh/ssh_auth_sock`, and a `prefix + u` binding to spawn
-  a two-pane dev window via `~/bin/tmux-new-dev-window`.
+  workaround via `~/.ssh/ssh_auth_sock`, a `prefix + u` binding to spawn
+  a two-pane dev window via `~/bin/tmux-new-dev-window`, and escape-sequence
+  passthrough (`allow-passthrough all`) so apps like Claude Code can send
+  desktop notifications to the outer terminal, even from background windows.
 - `dotfiles/.config/ghostty/config.ghostty` — Ghostty terminal configuration.
   Adwaita Dark theme with a custom background, SF Mono at 10pt.
 - `scripts/setup-fedora.sh` — Fedora bootstrap script. Installs `neovim`,
