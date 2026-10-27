@@ -224,6 +224,12 @@ require("lazy").setup({
       dependencies = { "rafamadriz/friendly-snippets" },
       version = "1.*",
       opts = {
+        -- Keep blink's default checks, but skip markdown (too noisy).
+        enabled = function()
+          return vim.bo.filetype ~= "markdown"
+            and vim.bo.buftype ~= "prompt"
+            and vim.b.completion ~= false
+        end,
         keymap = { preset = "super-tab" },
         appearance = {
           nerd_font_variant = "mono",
